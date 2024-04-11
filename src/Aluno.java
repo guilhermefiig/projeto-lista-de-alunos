@@ -1,9 +1,16 @@
+import Disciplinas.ListaMaterias;
 import Disciplinas.Materia;
 
 public class Aluno {
     private String nome;
     private int  rgm;
-    private Materia materias;
+    private ListaMaterias listaMaterias;
+
+    public Aluno(String nome, int rgm, ListaMaterias listaMaterias) {
+        this.nome = nome;
+        this.rgm = rgm;
+        this.listaMaterias = listaMaterias;
+    }
 
     public Aluno(String nome, int rgm) {
         this.nome = nome;
@@ -26,12 +33,20 @@ public class Aluno {
         this.nome = nome;
     }
 
+    public ListaMaterias getListaMaterias() {
+        return listaMaterias;
+    }
+
+    public void setListaMaterias(ListaMaterias listaMaterias) {
+        this.listaMaterias = listaMaterias;
+    }
+
     @Override
     public String toString() {
         return "Aluno{" +
                 "nome='" + nome + '\'' +
                 ", rgm=" + rgm +
-                ", materias=" + materias +
+                ", materias=" + listaMaterias +
                 '}';
     }
 }
