@@ -1,28 +1,26 @@
-import Disciplinas.ListaMaterias;
-import Disciplinas.Materia;
+import ListaEncadeada.ListaMaterias;
 
 public class Aluno {
     private String nome;
     private int  rgm;
-    private ListaMaterias listaMaterias;
+    private ListaMaterias materias;
 
-    public Aluno(String nome, int rgm, ListaMaterias listaMaterias) {
-        this.nome = nome;
+    public Aluno(int rgm, String nome) {
         this.rgm = rgm;
-        this.listaMaterias = listaMaterias;
+        this.nome = nome;
+        this.materias = new ListaMaterias();
     }
 
-    public Aluno(String nome, int rgm) {
-        this.nome = nome;
-        this.rgm = rgm;
+    public void addMateria(String name){
+        materias.addMateria(name);
+    }
+
+    public void removeMateria(String name){
+        materias.removerMateria(name);
     }
 
     public int getRgm() {
         return rgm;
-    }
-
-    public void setRgm(int rgm) {
-        this.rgm = rgm;
     }
 
     public String getNome() {
@@ -33,20 +31,12 @@ public class Aluno {
         this.nome = nome;
     }
 
-    public ListaMaterias getListaMaterias() {
-        return listaMaterias;
-    }
-
-    public void setListaMaterias(ListaMaterias listaMaterias) {
-        this.listaMaterias = listaMaterias;
+    public ListaMaterias getMaterias() {
+        return materias;
     }
 
     @Override
     public String toString() {
-        return "Aluno{" +
-                "nome='" + nome + '\'' +
-                ", rgm=" + rgm +
-                ", materias=" + listaMaterias +
-                '}';
+        return "\n  Nome do Aluno: " + nome + "\n  RGM: " + rgm + "\n  Matérias: " + materias ;
     }
 }

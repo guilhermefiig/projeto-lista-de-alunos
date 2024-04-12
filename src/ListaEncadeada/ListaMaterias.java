@@ -1,4 +1,6 @@
-package Disciplinas;
+package ListaEncadeada;
+
+import java.util.Objects;
 
 public class ListaMaterias {
     private Materia primeiro;
@@ -27,7 +29,7 @@ public class ListaMaterias {
 
 
         while (materiaAtual.getProxMateria() != null) {
-            if (materiaAtual.getMateria() == nomeMateria){
+            if (Objects.equals(materiaAtual.getMateria(), nomeMateria)){
                 inicio = materiaAtual.getProxMateria();
                 flag = true;
 
@@ -67,6 +69,4 @@ public class ListaMaterias {
 
         return message.toString();
     }
-
-
 }

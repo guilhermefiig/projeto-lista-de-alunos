@@ -1,4 +1,4 @@
-package Disciplinas;
+package ListaEncadeada;
 
 public class Materia {
     private  String materia;
@@ -32,5 +32,4 @@ public class Materia {
         return materia ;
 
     }
-
 }

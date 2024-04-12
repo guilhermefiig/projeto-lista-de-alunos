@@ -1,52 +1,62 @@
-import java.util.Arrays;
-
 public class ListaAlunos {
-    public Aluno[] listaAlunos = new Aluno[60];
+    private Aluno[] listaAlunos = new Aluno[60];
+    private int contador = 0;
 
+    public Aluno getAluno(int rgm) {
+        for (Aluno aluno : listaAlunos) {
+            if (aluno != null && aluno.getRgm() == rgm) {
+                return aluno;
+            }
+        }
+        return null;
+    }
+
+    public void buscarAluno(int buscarRgm) {
+        boolean alunoEncontrado = false;
+        for (int i = 0; i < contador; i++) {
+            Aluno aluno = listaAlunos[i];
+            if (aluno != null && buscarRgm == aluno.getRgm()) {
+                System.out.println("Nome: " + aluno.getNome());
+                System.out.println("RGM: " + aluno.getRgm());
+                System.out.println("Matéria/as: " + aluno.getMaterias());
+
+                alunoEncontrado = true;
+                break;
+            }
+        }
+        if (!alunoEncontrado) {
+            System.out.println("Aluno não encontrado!");
+        }
+    }
 
     public void adicionarAluno(int rgm, String nome) {
-        Aluno novoAluno = new Aluno(nome, rgm);
-        for (int i = 0; i < listaAlunos.length; i++) {
-            if (listaAlunos[i] == null) {
-                listaAlunos[i] = novoAluno;
-                break;
-            }
+        if (contador < 60) {
+            Aluno novoAluno = new Aluno(rgm, nome);
+            listaAlunos[contador] = novoAluno;
+            contador++;
+        } else {
+            System.out.println("A sala está cheia, não foi possível adicionar mais um aluno!");
         }
     }
-
 
     public void removerAluno(int rgm) {
-        for (int i = 0; i < listaAlunos.length; i++) {
-            if (listaAlunos[i] != null && listaAlunos[i].getRgm() == rgm) {
-                listaAlunos[i] = null;
-
-                for (int j = i; j < listaAlunos.length - 1; j++) {
-                    listaAlunos[j] = listaAlunos[j + 1];
-                }
-
-                listaAlunos[listaAlunos.length - 1] = null;
+        for (int i = 0; i < contador; i++) {
+            if (listaAlunos[i].getRgm() == rgm) {
+                listaAlunos[i] = listaAlunos[contador - 1];
+                listaAlunos[contador - 1] = null;
+                contador--;
                 break;
             }
         }
-    }
-
-//    public String buscarAluno(Aluno[] listaAlunos, int rgm) {
-//        for (int i = 0; i < listaAlunos.length; i++) {
-//            if (listaAlunos[i] != null && rgm == listaAlunos[i].getRgm()) {
-//                return "Nome: " + listaAlunos[i].getNome() + "\nRgm: "+ listaAlunos[i].getRgm();
-//            }
-//        }
-//        return null;
-//    }
-
-    public Aluno getAluno(int rgm){
-        return null;
     }
 
     @Override
     public String toString() {
-        return "ListaAlunos{" +
-                "listaAlunos=" + Arrays.toString(listaAlunos) +
-                '}';
+        StringBuilder sb = new StringBuilder("\nLista De Alunos{");
+        for (int i = 0; i < contador; i++) {
+            sb.append(listaAlunos[i]).append('\n');
+        }
+        sb.append('}');
+        return sb.toString();
     }
 }
